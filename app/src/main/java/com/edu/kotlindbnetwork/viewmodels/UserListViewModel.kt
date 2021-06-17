@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.edu.kotlindbnetwork.db.user.User
+import com.edu.kotlindbnetwork.repo.UserRepoInterface
 import com.edu.kotlindbnetwork.repo.UserRepoNetwork
 import com.edu.kotlindbnetwork.response.UserResponse
 import com.edu.kotlindbnetwork.response.toModel
@@ -13,7 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class UserListViewModel(
-    private val userRepo: UserRepoNetwork
+    private val userRepo: UserRepoInterface
 ) : ViewModel() {
     val liveUsers: MutableLiveData<List<User>> = MutableLiveData()
 

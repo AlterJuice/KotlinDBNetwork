@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.edu.kotlindbnetwork.DiUtil
 import com.edu.kotlindbnetwork.R
+import com.edu.kotlindbnetwork.repo.UserRepoDB
 import com.edu.kotlindbnetwork.repo.UserRepoNetwork
 import com.edu.kotlindbnetwork.viewmodels.UserListViewModel
 
@@ -33,6 +34,7 @@ class UserListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         model = UserListViewModel(UserRepoNetwork(DiUtil.apiServiceInstance))
+        model = UserListViewModel(UserRepoDB(DiUtil.databaseInstance))
     }
 
     companion object {

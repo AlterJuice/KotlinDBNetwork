@@ -5,7 +5,8 @@ import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.db.user.User
 import com.edu.kotlindbnetwork.response.toModel
 
-class UserRepoNetwork( private val api: APIService
+class UserRepoNetwork(
+    private val api: APIService
 ) : UserRepoInterface {
 
     override suspend fun getUsers(): List<User> {
