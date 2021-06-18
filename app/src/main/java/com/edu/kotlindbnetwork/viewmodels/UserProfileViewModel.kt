@@ -10,22 +10,24 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class UserListViewModel(
+class UserProfileViewModel(
     private val userRepo: UserRepo
-) : ViewModel() {
-    private val liveUsers: MutableLiveData<List<User>> = MutableLiveData()
-    val users: LiveData<List<User>> = liveUsers
+): ViewModel() {
+    private val liveUser: MutableLiveData<User> = MutableLiveData()
+    val user: LiveData<User> = liveUser
 
-    init {
-        getUsers()
-    }
-
-    fun getUsers() {
+    fun getUser(userId: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val users = userRepo.getUsers()
+            val user = userRepo.getUserById(userId)
             withContext(Dispatchers.Main) {
-                liveUsers.value = (liveUsers.value ?: listOf()) + users
+                liveUser.value = user
             }
         }
     }
+    fun deleteUser(userId: String){
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepo.clearUserById(userId)
+        }
+    }
+
 }

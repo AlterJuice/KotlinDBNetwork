@@ -2,4 +2,8 @@
     <string name="app_name">KotlinDBNetwork</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="items_are_empty">"Items are empty "</string>
+    <string name="reload_items">Reload items</string>
+    <string name="load_items">Load items</string>
+    <string name="user_profile">User profile</string>
 </resources>

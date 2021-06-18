@@ -8,8 +8,15 @@ import retrofit2.http.Query
 
 interface APIService {
 
-    @GET("api")
-    suspend fun getUsers(@Query("results") resultsCount: Int,
-                 @Query("inc") includedParams: String): UserResponse
+    @GET(Consts.apiUrlTag)
+    suspend fun getUsers(@Query(Consts.apiKeyInclude) includedParams: String,
+                         @Query(Consts.apiKeyCountUsers) count: Int
+                 ): UserResponse
+
+    @GET(Consts.apiUrlTag)
+    suspend fun getUser(@Query(Consts.apiKeyUserId) userId: String): UserResponse
+
+    @GET(Consts.apiUrlTag)
+    suspend fun getUserById(@Query(Consts.apiKeyUserId) userId: String): UserResponse
 
 }

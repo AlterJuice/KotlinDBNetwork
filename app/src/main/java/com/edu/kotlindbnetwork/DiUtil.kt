@@ -3,6 +3,9 @@ package com.edu.kotlindbnetwork
 import android.content.Context
 import androidx.room.Room
 import com.edu.kotlindbnetwork.db.Database
+import com.edu.kotlindbnetwork.repo.UserRepoDB
+import com.edu.kotlindbnetwork.repo.UserRepoDecorator
+import com.edu.kotlindbnetwork.repo.UserRepoNetwork
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -22,6 +25,10 @@ object DiUtil {
 
     val apiServiceInstance by lazy {
         createApiService()
+    }
+
+    val userRepoDecorator by lazy {
+        UserRepoDecorator(UserRepoNetwork(apiServiceInstance), UserRepoDB(databaseInstance))
     }
 
     private fun createRetrofitInstance(): Retrofit{
