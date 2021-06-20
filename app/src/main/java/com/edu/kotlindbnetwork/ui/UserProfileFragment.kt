@@ -1,32 +1,35 @@
 package com.edu.kotlindbnetwork.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.edu.kotlindbnetwork.App
 import com.edu.kotlindbnetwork.Consts
-import com.edu.kotlindbnetwork.DiUtil
 import com.edu.kotlindbnetwork.R
 import com.edu.kotlindbnetwork.databinding.FragmentUserProfileBinding
 import com.edu.kotlindbnetwork.db.user.User
-import com.edu.kotlindbnetwork.viewmodels.UserListViewModel
+import com.edu.kotlindbnetwork.repo.UserRepo
 import com.edu.kotlindbnetwork.viewmodels.UserProfileViewModel
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 
 class UserProfileFragment : Fragment() {
     lateinit var binding: FragmentUserProfileBinding
 
+    @Inject
+    lateinit var userRepo: UserRepo
+
     private val model by lazy{
         ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return UserProfileViewModel(DiUtil.userRepoDecorator) as T
+                return UserProfileViewModel(userRepo) as T
             }
-
         }).get(UserProfileViewModel::class.java)
     }
 
@@ -42,6 +45,11 @@ class UserProfileFragment : Fragment() {
     ): View? {
         binding = FragmentUserProfileBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        App.getComponent().injectsUserProfileFragment(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,11 +70,7 @@ class UserProfileFragment : Fragment() {
     }
 
     fun loadImageIntoView(imageUrl: String?, intoImageView: ImageView, placeholderResId: Int) {
-        Picasso.with(intoImageView.context)
-            .load(imageUrl)
-            .noFade()
-            .placeholder(placeholderResId)
-            .into(intoImageView)
+        Picasso.get().load(imageUrl).noFade().placeholder(placeholderResId).into(intoImageView)
     }
 
     companion object {
