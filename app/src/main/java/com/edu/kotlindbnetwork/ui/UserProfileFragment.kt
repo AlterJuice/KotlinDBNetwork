@@ -65,12 +65,15 @@ class UserProfileFragment : Fragment() {
             userName.text = "${user.firstName} ${user.lastName}"
             userEmail.text = user.email
             userPhone.text = user.phoneNumber
-            loadImageIntoView(user.photoUrl, this.userPhoto, R.drawable.shape_circle)
+            loadImageIntoView(user.photoUrl, this.userPhoto)
         }
     }
 
-    fun loadImageIntoView(imageUrl: String?, intoImageView: ImageView, placeholderResId: Int) {
+    private fun loadImageIntoView(imageUrl: String?, intoImageView: ImageView, placeholderResId: Int) {
         Picasso.get().load(imageUrl).noFade().placeholder(placeholderResId).into(intoImageView)
+    }
+    private fun loadImageIntoView(imageUrl: String?, intoImageView: ImageView) {
+        Picasso.get().load(imageUrl).noFade().into(intoImageView)
     }
 
     companion object {
