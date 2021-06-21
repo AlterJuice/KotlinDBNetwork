@@ -28,7 +28,7 @@ class UserListViewModel(
             if (savedUsers != null)
                 offset = savedUsers.size
 
-            val users = userRepo.getUsers(Consts.COUNT_USERS_PER_REQUEST, offset)
+            val users = userRepo.getUsers(offset)
             withContext(Dispatchers.Main) {
 
                 liveUsers.value = (liveUsers.value ?: listOf()) + users

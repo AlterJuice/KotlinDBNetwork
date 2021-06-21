@@ -20,34 +20,25 @@ class UserRepoDecorator(
         }
     }
 
-    override suspend fun getUsers(): List<User> {
-        return getUsers(Consts.COUNT_USERS_PER_REQUEST)
-    }
+//    override suspend fun getUsers(): List<User> {
+//        return getUsers(0)
+//    }
+//
+//    override suspend fun getUsers(offset: Int): List<User> {
+//        return getUsers(offset, Consts.COUNT_USERS_PER_REQUEST)
+//    }
 
-    override suspend fun getUsers(count: Int): List<User> {
-        return getUsers(count, -1)
-    }
-
-    override suspend fun getUsers(count: Int, offset: Int): List<User> {
+    override suspend fun getUsers(offset: Int, count: Int): List<User> {
         Log.d("Decorator: ", "Count: $count, offset: $offset")
         return try {
-            val users = getUsers(networkRepo, count, offset)
+            val users = networkRepo.getUsers(offset, count)
             clearDataIfFirstRequest()
             saveUsers(users)
             users
         } catch (e: Exception) {
             e.printStackTrace()
-            getUsers(databaseRepo, count, offset)
+            databaseRepo.getUsers(offset, count)
         }
-    }
-
-    private suspend fun getUsers(repo: UserRepo, count: Int, offset: Int): List<User> {
-        if (offset == -1)
-            if (count == -1)
-                return repo.getUsers()
-            else
-                return repo.getUsers(count)
-        return repo.getUsers(count, offset)
     }
 
     override suspend fun saveUsers(users: List<User>) {
