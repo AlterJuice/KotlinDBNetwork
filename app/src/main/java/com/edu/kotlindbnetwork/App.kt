@@ -1,6 +1,7 @@
 package com.edu.kotlindbnetwork
 
 import android.app.Application
+import com.edu.kotlindbnetwork.modules.NetworkModule
 import com.edu.kotlindbnetwork.modules.RepoModule
 
 class App : Application() {
@@ -16,7 +17,10 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        component = DaggerAppComponent.builder().repoModule(RepoModule(this)).build()
+        component = DaggerAppComponent.builder()
+            .repoModule(RepoModule(this))
+            .networkModule(NetworkModule())
+            .build()
     }
 
 }

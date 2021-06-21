@@ -3,6 +3,9 @@ package com.edu.kotlindbnetwork
 object Consts{
     // Consts file move to ...?
     // Replace ([A-Z]) to \_\L$1
+
+    const val MODULE_TAG_API_SERVICE = "apiService"
+
     const val FRAGMENT_USER_PROFILE_TAG = "_user_profile"
     const val FRAGMENT_USER_PROFILE_ARG_USER_ID = "user_id"
     const val COUNT_USERS_PER_REQUEST = 20
