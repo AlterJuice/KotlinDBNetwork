@@ -14,13 +14,13 @@ class UserRepoNetwork(
     }
 
     override suspend fun getUsers(count: Int): List<User> {
-        return api.getUsers(Consts.INCLUDED_PARAMS, count).results.map {
-            it.toModel()
-        }
+        return getUsers(count, 0)
     }
 
     override suspend fun getUsers(count: Int, offset: Int): List<User> {
-        return getUsers(count)
+        return api.getUsers(Consts.INCLUDED_PARAMS, count).results.map {
+            it.toModel()
+        }
     }
 
     override suspend fun saveUsers(users: List<User>) {

@@ -1,5 +1,6 @@
 package com.edu.kotlindbnetwork.repo
 
+import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.data.db.Database
 import com.edu.kotlindbnetwork.data.db.user.User
 
@@ -7,11 +8,11 @@ class UserRepoDB(
     private val database: Database
 ): UserRepo {
     override suspend fun getUsers(): List<User> {
-        return database.userDao()?.getUsers()!!
+        return getUsers(Consts.COUNT_USERS_PER_REQUEST)
     }
 
     override suspend fun getUsers(count: Int): List<User> {
-        return database.userDao()?.getUsers(count)!!
+        return getUsers(count, 0)
     }
 
     override suspend fun getUsers(count: Int, offset: Int): List<User> {
