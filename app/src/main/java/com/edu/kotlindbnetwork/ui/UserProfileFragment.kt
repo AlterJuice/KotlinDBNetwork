@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.edu.kotlindbnetwork.App
 import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.databinding.FragmentUserProfileBinding
@@ -74,7 +75,9 @@ class UserProfileFragment : Fragment() {
         Picasso.get().load(imageUrl).noFade().placeholder(placeholderResId).into(intoImageView)
     }
     private fun loadImageIntoView(imageUrl: String?, intoImageView: ImageView) {
-        Picasso.get().load(imageUrl).noFade().into(intoImageView)
+        Glide.with(intoImageView.context)
+            .load(imageUrl)
+            .into(intoImageView)
     }
 
     companion object {

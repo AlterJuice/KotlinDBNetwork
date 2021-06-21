@@ -1,7 +1,10 @@
 package com.edu.kotlindbnetwork.ui.adapters
 
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -38,6 +41,14 @@ class UserAdapter(
         fun bind(user: User, onItemClick: (User) -> Unit){
             binding.root.setOnClickListener {
                 onItemClick(user)
+            }
+            binding.root.onFocusChangeListener = object : View.OnFocusChangeListener{
+                override fun onFocusChange(v: View?, hasFocus: Boolean) {
+                    if (v == null) return
+                    var scale = 1f
+                    if (hasFocus) scale += 0.1f
+                    v.animate().scaleX(scale).scaleY(scale).setDuration(300).start()
+                }
             }
             binding.itemID.text = user.firstName
         }
