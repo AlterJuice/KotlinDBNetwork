@@ -1,18 +1,18 @@
-package com.edu.kotlindbnetwork.modules;
+package com.edu.kotlindbnetwork.modules
 
 import android.content.Context
-import androidx.room.Room;
+import androidx.room.Room
 import com.edu.kotlindbnetwork.Consts
 
-import com.edu.kotlindbnetwork.data.db.Database;
+import com.edu.kotlindbnetwork.data.db.Database
 import com.edu.kotlindbnetwork.data.network.APIService
 import com.edu.kotlindbnetwork.repo.UserRepo
 import com.edu.kotlindbnetwork.repo.UserRepoDB
 import com.edu.kotlindbnetwork.repo.UserRepoDecorator
 import com.edu.kotlindbnetwork.repo.UserRepoNetwork
 
-import dagger.Module;
-import dagger.Provides;
+import dagger.Module
+import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

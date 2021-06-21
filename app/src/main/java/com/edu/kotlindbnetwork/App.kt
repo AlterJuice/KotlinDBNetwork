@@ -1,4 +1,4 @@
-package com.edu.kotlindbnetwork;
+package com.edu.kotlindbnetwork
 
 import android.app.Application
 import com.edu.kotlindbnetwork.modules.RepoModule

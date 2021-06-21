@@ -1,12 +1,10 @@
 <resources>
     <string name="app_name">KotlinDBNetwork</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="items_are_empty">"Items are empty "</string>
-    <string name="reload_items">Reload items</string>
     <string name="load_items">Load items</string>
     <string name="user_profile">User profile</string>
     <string name="user_name_field">User name:</string>
     <string name="user_id_field">UserID:</string>
     <string name="user_email_field">User email:</string>
     <string name="user_phone_field">User phone:</string>
+    <string name="users_profile_photo_imageview_description">User\'s profile photo</string>
 </resources>

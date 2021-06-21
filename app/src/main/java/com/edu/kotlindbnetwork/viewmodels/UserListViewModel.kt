@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.data.db.user.User
 import com.edu.kotlindbnetwork.repo.UserRepo
 import kotlinx.coroutines.Dispatchers

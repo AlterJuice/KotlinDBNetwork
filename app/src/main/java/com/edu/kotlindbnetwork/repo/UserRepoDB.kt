@@ -1,6 +1,5 @@
 package com.edu.kotlindbnetwork.repo
 
-import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.data.db.Database
 import com.edu.kotlindbnetwork.data.db.user.User
 

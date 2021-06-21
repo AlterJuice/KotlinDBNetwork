@@ -1,9 +1,7 @@
 package com.edu.kotlindbnetwork.repo
 
 import android.util.Log
-import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.data.db.user.User
-import java.lang.Exception
 
 class UserRepoDecorator(
     private val networkRepo: UserRepo,

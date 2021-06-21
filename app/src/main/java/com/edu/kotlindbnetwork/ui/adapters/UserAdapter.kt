@@ -1,16 +1,14 @@
 package com.edu.kotlindbnetwork.ui.adapters
 
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.edu.kotlindbnetwork.databinding.UserListItemBinding
 import com.edu.kotlindbnetwork.data.db.user.User
+import com.edu.kotlindbnetwork.databinding.UserListItemBinding
 
 
 class UserAdapter(

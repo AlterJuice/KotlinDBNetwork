@@ -53,7 +53,7 @@ class UserListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.loadMoreButton.setOnClickListener({ model.getUsers() })
+        binding.loadMoreButton.setOnClickListener { model.getUsers() }
         binding.userProfileList.adapter = adapter
         binding.userProfileList.layoutManager = LinearLayoutManager(context)
         model.users.observe(viewLifecycleOwner, {

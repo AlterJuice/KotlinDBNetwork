@@ -1,6 +1,6 @@
-package com.edu.kotlindbnetwork;
+package com.edu.kotlindbnetwork
 
-import com.edu.kotlindbnetwork.data.db.Database;
+import com.edu.kotlindbnetwork.data.db.Database
 import com.edu.kotlindbnetwork.data.network.APIService
 import com.edu.kotlindbnetwork.modules.RepoModule
 import com.edu.kotlindbnetwork.repo.UserRepo
@@ -8,8 +8,8 @@ import com.edu.kotlindbnetwork.ui.MainActivity
 import com.edu.kotlindbnetwork.ui.UserListFragment
 import com.edu.kotlindbnetwork.ui.UserProfileFragment
 
-import dagger.Component;
-import retrofit2.Retrofit;
+import dagger.Component
+import retrofit2.Retrofit
 
 @Component(modules = [RepoModule::class])
 interface AppComponent {
