@@ -60,11 +60,13 @@ class UserProfileFragment : Fragment() {
 
     private fun showUserContent(user: User){
         with(binding){
+            val firstLastName = "${user.firstName} ${user.lastName}"
             userID.text = user.uid
-            userName.text = "${user.firstName} ${user.lastName}"
+            userName.text = firstLastName
             userEmail.text = user.email
             userPhone.text = user.phoneNumber
             loadImageIntoView(user.photoUrl, this.userPhoto)
+            (requireActivity() as MainActivity).setBarSubtitle(firstLastName)
         }
     }
 

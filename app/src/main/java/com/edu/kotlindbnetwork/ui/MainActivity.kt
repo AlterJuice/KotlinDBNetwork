@@ -20,4 +20,12 @@ class MainActivity : AppCompatActivity(){
             .replace(R.id.mainFragmentContainer, fragment).
             commit()
     }
+    fun setBarSubtitle(text: String){
+        supportActionBar?.subtitle = text
+    }
+
+    override fun onBackPressed() {
+        setBarSubtitle("")
+        super.onBackPressed()
+    }
 }
