@@ -74,9 +74,11 @@ class UserProfileFragment : Fragment() {
     private fun picassoLoadImageIntoView(imageUrl: String?, intoImageView: ImageView) {
         Picasso.get().load(imageUrl).noFade().into(intoImageView)
     }
+
     private fun glideLoadImageIntoView(imageUrl: String?, intoImageView: ImageView) {
         Glide.with(intoImageView.context)
             .load(imageUrl)
+            .circleCrop()
             .into(intoImageView)
     }
 
