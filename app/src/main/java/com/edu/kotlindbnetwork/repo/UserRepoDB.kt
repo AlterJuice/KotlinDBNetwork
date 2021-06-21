@@ -1,7 +1,7 @@
 package com.edu.kotlindbnetwork.repo
 
 import com.edu.kotlindbnetwork.db.Database
-import com.edu.kotlindbnetwork.db.user.User
+import com.edu.kotlindbnetwork.db.data.user.User
 
 class UserRepoDB(
     private val database:Database

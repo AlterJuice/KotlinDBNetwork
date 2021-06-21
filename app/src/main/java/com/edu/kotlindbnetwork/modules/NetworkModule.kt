@@ -1,4 +1,4 @@
-package com.edu.kotlindbnetwork;
+package com.edu.kotlindbnetwork.modules;
 
 import dagger.Module;
 import dagger.Provides;

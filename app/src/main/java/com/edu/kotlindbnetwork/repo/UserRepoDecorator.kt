@@ -1,7 +1,7 @@
 package com.edu.kotlindbnetwork.repo
 
 import com.edu.kotlindbnetwork.Consts
-import com.edu.kotlindbnetwork.db.user.User
+import com.edu.kotlindbnetwork.db.data.user.User
 import java.lang.Exception
 
 class UserRepoDecorator(
@@ -12,15 +12,15 @@ class UserRepoDecorator(
     private var firstRequest = true
 
 
-    private suspend fun clearDataIfFirstRequest(){
-        if (firstRequest){
+    private suspend fun clearDataIfFirstRequest() {
+        if (firstRequest) {
             firstRequest = false
             databaseRepo.clearUsers()
         }
     }
 
     override suspend fun getUsers(): List<User> {
-        return getUsers(Consts.countUsersPerRequest)
+        return getUsers(Consts.COUNT_USERS_PER_REQUEST)
     }
 
     override suspend fun getUsers(count: Int): List<User> {
@@ -33,13 +33,13 @@ class UserRepoDecorator(
             clearDataIfFirstRequest()
             saveUsers(users)
             users
-        } catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
             getUsers(databaseRepo, count, offset)
         }
     }
 
-    private suspend fun getUsers(repo: UserRepo, count: Int, offset:Int): List<User> {
+    private suspend fun getUsers(repo: UserRepo, count: Int, offset: Int): List<User> {
         if (offset == -1)
             if (count == -1)
                 return repo.getUsers()
@@ -67,7 +67,7 @@ class UserRepoDecorator(
     override suspend fun clearUserById(userId: String) {
         try {
             networkRepo.clearUserById(userId)
-        }catch (e: Exception){
+        } catch (e: Exception) {
         }
         databaseRepo.clearUserById(userId)
     }

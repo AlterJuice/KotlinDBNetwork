@@ -10,9 +10,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.edu.kotlindbnetwork.App
 import com.edu.kotlindbnetwork.Consts
-import com.edu.kotlindbnetwork.R
 import com.edu.kotlindbnetwork.databinding.FragmentUserProfileBinding
-import com.edu.kotlindbnetwork.db.user.User
+import com.edu.kotlindbnetwork.db.data.user.User
 import com.edu.kotlindbnetwork.repo.UserRepo
 import com.edu.kotlindbnetwork.viewmodels.UserProfileViewModel
 import com.squareup.picasso.Picasso
@@ -35,7 +34,7 @@ class UserProfileFragment : Fragment() {
 
 
     private val userId by lazy {
-        arguments?.getString(Consts.fragmentUserProfileArgUserId) ?: ""
+        arguments?.getString(Consts.FRAGMENT_USER_PROFILE_ARG_USER_ID) ?: ""
     }
 
 
@@ -77,12 +76,10 @@ class UserProfileFragment : Fragment() {
     }
 
     companion object {
-
-        @JvmStatic
         fun newInstance(userId: String) =
             UserProfileFragment().apply {
                 arguments = Bundle().apply {
-                    putString(Consts.fragmentUserProfileArgUserId, userId)
+                    putString(Consts.FRAGMENT_USER_PROFILE_ARG_USER_ID, userId)
                 }
             }
     }

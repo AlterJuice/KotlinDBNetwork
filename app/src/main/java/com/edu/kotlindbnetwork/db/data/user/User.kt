@@ -1,11 +1,11 @@
-package com.edu.kotlindbnetwork.db.user
+package com.edu.kotlindbnetwork.db.data.user
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.edu.kotlindbnetwork.Consts
 
-@Entity(tableName = Consts.tableNameUsers)
+@Entity(tableName = Consts.TABLE_NAME_USERS)
 class User(
     @PrimaryKey var uid: String,
     @ColumnInfo(name = "first_name") var firstName: String?,

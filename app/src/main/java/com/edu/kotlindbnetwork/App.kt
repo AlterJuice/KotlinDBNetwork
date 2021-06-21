@@ -1,6 +1,7 @@
 package com.edu.kotlindbnetwork;
 
 import android.app.Application
+import com.edu.kotlindbnetwork.modules.RepoModule
 
 class App : Application() {
 
