@@ -1,5 +1,6 @@
 package com.edu.kotlindbnetwork.repo
 
+import android.util.Log
 import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.data.db.user.User
 import java.lang.Exception
@@ -28,6 +29,7 @@ class UserRepoDecorator(
     }
 
     override suspend fun getUsers(count: Int, offset: Int): List<User> {
+        Log.d("Decorator: ", "Count: $count, offset: $offset")
         return try {
             val users = getUsers(networkRepo, count, offset)
             clearDataIfFirstRequest()

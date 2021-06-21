@@ -14,5 +14,4 @@ class User(
     @ColumnInfo(name = "email") var email: String?,
     @ColumnInfo(name = "photo_url") var photoUrl: String?
 
-    // phone, urlPhoto, email
 )

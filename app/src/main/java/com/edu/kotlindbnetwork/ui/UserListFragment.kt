@@ -22,7 +22,7 @@ class UserListFragment : Fragment() {
     private lateinit var binding: FragmentUserListBinding
 
     @Inject
-    private lateinit var userRepo: UserRepo;
+    lateinit var userRepo: UserRepo
 
 
     private val model by lazy{
@@ -73,12 +73,6 @@ class UserListFragment : Fragment() {
     }
 
     companion object {
-        @JvmStatic
-        fun newInstance() =
-            UserListFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
+        fun newInstance() = UserListFragment()
     }
 }

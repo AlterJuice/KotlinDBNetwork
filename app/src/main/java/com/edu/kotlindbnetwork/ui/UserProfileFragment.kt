@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 
 class UserProfileFragment : Fragment() {
-    lateinit var binding: FragmentUserProfileBinding
+    private lateinit var binding: FragmentUserProfileBinding
 
     @Inject
     lateinit var userRepo: UserRepo

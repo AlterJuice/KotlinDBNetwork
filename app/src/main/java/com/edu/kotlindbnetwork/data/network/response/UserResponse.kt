@@ -1,4 +1,4 @@
-package com.edu.kotlindbnetwork.data.network
+package com.edu.kotlindbnetwork.data.network.response
 
 import com.edu.kotlindbnetwork.Consts
 import com.google.gson.annotations.SerializedName

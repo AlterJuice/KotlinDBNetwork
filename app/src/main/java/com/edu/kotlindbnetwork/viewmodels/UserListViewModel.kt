@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.data.db.user.User
 import com.edu.kotlindbnetwork.repo.UserRepo
 import kotlinx.coroutines.Dispatchers
@@ -22,8 +23,14 @@ class UserListViewModel(
 
     fun getUsers() {
         viewModelScope.launch(Dispatchers.IO) {
-            val users = userRepo.getUsers()
+            var offset = 0
+            val savedUsers = liveUsers.value
+            if (savedUsers != null)
+                offset = savedUsers.size
+
+            val users = userRepo.getUsers(Consts.COUNT_USERS_PER_REQUEST, offset)
             withContext(Dispatchers.Main) {
+
                 liveUsers.value = (liveUsers.value ?: listOf()) + users
             }
         }
