@@ -1,26 +1,26 @@
 package com.edu.kotlindbnetwork.repo
 
-import com.edu.kotlindbnetwork.APIService
+import com.edu.kotlindbnetwork.data.network.APIService
 import com.edu.kotlindbnetwork.Consts
-import com.edu.kotlindbnetwork.db.user.User
-import com.edu.kotlindbnetwork.response.toModel
+import com.edu.kotlindbnetwork.data.db.user.User
+import com.edu.kotlindbnetwork.data.network.response.toModel
 
 class UserRepoNetwork(
     private val api: APIService
 ) : UserRepo {
 
-    override suspend fun getUsers(): List<User> {
-        return getUsers(Consts.countUsersPerRequest)
-    }
+//    override suspend fun getUsers(): List<User> {
+//        return getUsers(0)
+//    }
+//
+//    override suspend fun getUsers(offset: Int): List<User> {
+//        return getUsers(offset, Consts.COUNT_USERS_PER_REQUEST)
+//    }
 
-    override suspend fun getUsers(count: Int): List<User> {
-        return api.getUsers(Consts.includedParams, count).results.map {
+    override suspend fun getUsers(offset: Int, count: Int): List<User> {
+        return api.getUsers(Consts.INCLUDED_PARAMS, count).results.map {
             it.toModel()
         }
-    }
-
-    override suspend fun getUsers(count: Int, offset: Int): List<User> {
-        return getUsers(count)
     }
 
     override suspend fun saveUsers(users: List<User>) {

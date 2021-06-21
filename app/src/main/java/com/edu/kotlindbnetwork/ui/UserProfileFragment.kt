@@ -1,47 +1,61 @@
 package com.edu.kotlindbnetwork.ui
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
+import com.edu.kotlindbnetwork.App
 import com.edu.kotlindbnetwork.Consts
-import com.edu.kotlindbnetwork.DiUtil
 import com.edu.kotlindbnetwork.R
 import com.edu.kotlindbnetwork.databinding.FragmentUserProfileBinding
-import com.edu.kotlindbnetwork.db.user.User
-import com.edu.kotlindbnetwork.viewmodels.UserListViewModel
+import com.edu.kotlindbnetwork.data.db.user.User
+import com.edu.kotlindbnetwork.repo.UserRepo
 import com.edu.kotlindbnetwork.viewmodels.UserProfileViewModel
-import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 
 class UserProfileFragment : Fragment() {
-    lateinit var binding: FragmentUserProfileBinding
+    private lateinit var binding: FragmentUserProfileBinding
+
+    @Inject
+    lateinit var userRepo: UserRepo
 
     private val model by lazy{
         ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return UserProfileViewModel(DiUtil.userRepoDecorator) as T
+                return UserProfileViewModel(userRepo) as T
             }
-
         }).get(UserProfileViewModel::class.java)
     }
 
 
     private val userId by lazy {
-        arguments?.getString(Consts.fragmentUserProfileArgUserId) ?: ""
+        arguments?.getString(Consts.FRAGMENT_USER_PROFILE_ARG_USER_ID) ?: ""
     }
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentUserProfileBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        App.getComponent().injectsUserProfileFragment(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,29 +67,50 @@ class UserProfileFragment : Fragment() {
 
     private fun showUserContent(user: User){
         with(binding){
+            val firstLastName = "${user.firstName} ${user.lastName}"
             userID.text = user.uid
-            userName.text = "${user.firstName} ${user.lastName}"
+            userName.text = firstLastName
             userEmail.text = user.email
             userPhone.text = user.phoneNumber
-            loadImageIntoView(user.photoUrl, this.userPhoto, R.drawable.shape_circle)
+            loadImageIntoView(user.photoUrl, this.userPhoto)
+            (requireActivity() as MainActivity).setBarSubtitle(firstLastName)
         }
     }
 
-    fun loadImageIntoView(imageUrl: String?, intoImageView: ImageView, placeholderResId: Int) {
-        Picasso.with(intoImageView.context)
-            .load(imageUrl)
-            .noFade()
-            .placeholder(placeholderResId)
-            .into(intoImageView)
+    private fun loadImageIntoView(imageUrl: String?, intoImageView: ImageView) {
+        // Picasso.get().load(imageUrl).noFade().into(intoImageView)
+        Glide.with(intoImageView.context).load(imageUrl)
+            .addListener(object : RequestListener<Drawable>{
+            override fun onResourceReady(
+                resource: Drawable?,
+                model: Any?,
+                target: Target<Drawable>?,
+                dataSource: DataSource?,
+                isFirstResource: Boolean
+            ): Boolean {
+                intoImageView.animation = AnimationUtils.loadAnimation(context, R.anim.scale_up_down)
+                return false
+            }
+
+            override fun onLoadFailed(
+                e: GlideException?,
+                model: Any?,
+                target: Target<Drawable>?,
+                isFirstResource: Boolean
+            ): Boolean {
+                return false
+            }
+        })
+            .circleCrop().into(intoImageView)
+        // intoImageView.animation = AnimationUtils.loadAnimation(context, R.anim.scale_up_down)
+
     }
 
     companion object {
-
-        @JvmStatic
         fun newInstance(userId: String) =
             UserProfileFragment().apply {
                 arguments = Bundle().apply {
-                    putString(Consts.fragmentUserProfileArgUserId, userId)
+                    putString(Consts.FRAGMENT_USER_PROFILE_ARG_USER_ID, userId)
                 }
             }
     }

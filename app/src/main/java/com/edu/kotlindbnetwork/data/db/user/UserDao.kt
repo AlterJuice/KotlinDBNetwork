@@ -1,4 +1,4 @@
-package com.edu.kotlindbnetwork.db.user
+package com.edu.kotlindbnetwork.data.db.user
 
 import androidx.room.*
 

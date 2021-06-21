@@ -2,7 +2,8 @@ package com.edu.kotlindbnetwork
 
 import android.content.Context
 import androidx.room.Room
-import com.edu.kotlindbnetwork.db.Database
+import com.edu.kotlindbnetwork.data.db.Database
+import com.edu.kotlindbnetwork.data.network.APIService
 import com.edu.kotlindbnetwork.repo.UserRepoDB
 import com.edu.kotlindbnetwork.repo.UserRepoDecorator
 import com.edu.kotlindbnetwork.repo.UserRepoNetwork
@@ -15,34 +16,34 @@ object DiUtil {
     fun init(context: Context) {
         contextProvider = { context }
     }
-    val databaseInstance by lazy {
+    private val databaseInstance by lazy {
         createDatabase()
     }
 
-    val retrofitInstance by lazy {
+    private val retrofitInstance by lazy {
         createRetrofitInstance()
     }
 
-    val apiServiceInstance by lazy {
+    private val apiServiceInstance by lazy {
         createApiService()
     }
 
-    val userRepoDecorator by lazy {
+    private val userRepoDecorator by lazy {
         UserRepoDecorator(UserRepoNetwork(apiServiceInstance), UserRepoDB(databaseInstance))
     }
 
     private fun createRetrofitInstance(): Retrofit{
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(Consts.baseApiUrl).build()
+            .baseUrl(Consts.BASE_API_URL).build()
     }
 
-    private fun createDatabase(): Database{
+    private fun createDatabase(): Database {
         return Room.databaseBuilder(contextProvider(),
-            Database::class.java, Consts.databaseFilename).build()
+            Database::class.java, Consts.DATABASE_FILENAME).build()
     }
 
-    private fun createApiService(): APIService{
+    private fun createApiService(): APIService {
         return retrofitInstance.create(APIService::class.java)
     }
 
