@@ -1,6 +1,6 @@
 package com.edu.kotlindbnetwork.repo
 
-import com.edu.kotlindbnetwork.db.data.user.User
+import com.edu.kotlindbnetwork.data.db.user.User
 
 interface UserRepo {
 

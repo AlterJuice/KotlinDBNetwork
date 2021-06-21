@@ -2,8 +2,8 @@ package com.edu.kotlindbnetwork
 
 import android.content.Context
 import androidx.room.Room
-import com.edu.kotlindbnetwork.db.Database
-import com.edu.kotlindbnetwork.db.network.APIService
+import com.edu.kotlindbnetwork.data.db.Database
+import com.edu.kotlindbnetwork.data.network.APIService
 import com.edu.kotlindbnetwork.repo.UserRepoDB
 import com.edu.kotlindbnetwork.repo.UserRepoDecorator
 import com.edu.kotlindbnetwork.repo.UserRepoNetwork
@@ -38,7 +38,7 @@ object DiUtil {
             .baseUrl(Consts.BASE_API_URL).build()
     }
 
-    private fun createDatabase(): Database{
+    private fun createDatabase(): Database {
         return Room.databaseBuilder(contextProvider(),
             Database::class.java, Consts.DATABASE_FILENAME).build()
     }

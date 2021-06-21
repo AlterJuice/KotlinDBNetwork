@@ -1,10 +1,10 @@
 package com.edu.kotlindbnetwork.repo
 
-import com.edu.kotlindbnetwork.db.Database
-import com.edu.kotlindbnetwork.db.data.user.User
+import com.edu.kotlindbnetwork.data.db.Database
+import com.edu.kotlindbnetwork.data.db.user.User
 
 class UserRepoDB(
-    private val database:Database
+    private val database: Database
 ): UserRepo {
     override suspend fun getUsers(): List<User> {
         return database.userDao()?.getUsers()!!

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edu.kotlindbnetwork.*
 import com.edu.kotlindbnetwork.databinding.FragmentUserListBinding
-import com.edu.kotlindbnetwork.db.data.user.User
+import com.edu.kotlindbnetwork.data.db.user.User
 import com.edu.kotlindbnetwork.repo.UserRepo
 import com.edu.kotlindbnetwork.ui.adapters.UserAdapter
 import com.edu.kotlindbnetwork.viewmodels.UserListViewModel

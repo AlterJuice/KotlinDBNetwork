@@ -1,7 +1,6 @@
-package com.edu.kotlindbnetwork.db.network
+package com.edu.kotlindbnetwork.data.network
 
 import com.edu.kotlindbnetwork.Consts
-import com.edu.kotlindbnetwork.db.network.response.UserResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

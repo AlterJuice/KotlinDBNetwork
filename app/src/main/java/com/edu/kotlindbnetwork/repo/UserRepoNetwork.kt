@@ -1,9 +1,9 @@
 package com.edu.kotlindbnetwork.repo
 
-import com.edu.kotlindbnetwork.db.network.APIService
+import com.edu.kotlindbnetwork.data.network.APIService
 import com.edu.kotlindbnetwork.Consts
-import com.edu.kotlindbnetwork.db.data.user.User
-import com.edu.kotlindbnetwork.db.network.response.toModel
+import com.edu.kotlindbnetwork.data.db.user.User
+import com.edu.kotlindbnetwork.data.network.toModel
 
 class UserRepoNetwork(
     private val api: APIService

@@ -1,8 +1,8 @@
-package com.edu.kotlindbnetwork.db.network.response
+package com.edu.kotlindbnetwork.data.network
 
 import com.edu.kotlindbnetwork.Consts
 import com.google.gson.annotations.SerializedName
-import com.edu.kotlindbnetwork.db.data.user.User as DatabaseUser
+import com.edu.kotlindbnetwork.data.db.user.User as DatabaseUser
 
 data class UserResponse(
     @SerializedName(Consts.API_KEY_RESULTS) val results: List<User>

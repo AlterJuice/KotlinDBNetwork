@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.edu.kotlindbnetwork.App
 import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.databinding.FragmentUserProfileBinding
-import com.edu.kotlindbnetwork.db.data.user.User
+import com.edu.kotlindbnetwork.data.db.user.User
 import com.edu.kotlindbnetwork.repo.UserRepo
 import com.edu.kotlindbnetwork.viewmodels.UserProfileViewModel
 import com.squareup.picasso.Picasso

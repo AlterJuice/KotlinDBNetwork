@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.edu.kotlindbnetwork.databinding.UserListItemBinding
-import com.edu.kotlindbnetwork.db.data.user.User
+import com.edu.kotlindbnetwork.data.db.user.User
 
 
 class UserAdapter(

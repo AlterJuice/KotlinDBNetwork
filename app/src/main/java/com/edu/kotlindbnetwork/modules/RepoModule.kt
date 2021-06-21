@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Room;
 import com.edu.kotlindbnetwork.Consts
 
-import com.edu.kotlindbnetwork.db.Database;
-import com.edu.kotlindbnetwork.db.network.APIService
+import com.edu.kotlindbnetwork.data.db.Database;
+import com.edu.kotlindbnetwork.data.network.APIService
 import com.edu.kotlindbnetwork.repo.UserRepo
 import com.edu.kotlindbnetwork.repo.UserRepoDB
 import com.edu.kotlindbnetwork.repo.UserRepoDecorator
@@ -30,7 +30,7 @@ class RepoModule(
     }
 
     @Provides
-    fun provideDatabase(): Database{
+    fun provideDatabase(): Database {
         return Room.databaseBuilder(getContext(),
                 Database::class.java, Consts.DATABASE_FILENAME
         ).build()
