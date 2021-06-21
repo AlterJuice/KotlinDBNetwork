@@ -66,15 +66,15 @@ class UserProfileFragment : Fragment() {
             userName.text = firstLastName
             userEmail.text = user.email
             userPhone.text = user.phoneNumber
-            loadImageIntoView(user.photoUrl, this.userPhoto)
+            glideLoadImageIntoView(user.photoUrl, this.userPhoto)
             (requireActivity() as MainActivity).setBarSubtitle(firstLastName)
         }
     }
 
-    private fun loadImageIntoView(imageUrl: String?, intoImageView: ImageView, placeholderResId: Int) {
-        Picasso.get().load(imageUrl).noFade().placeholder(placeholderResId).into(intoImageView)
+    private fun picassoLoadImageIntoView(imageUrl: String?, intoImageView: ImageView) {
+        Picasso.get().load(imageUrl).noFade().into(intoImageView)
     }
-    private fun loadImageIntoView(imageUrl: String?, intoImageView: ImageView) {
+    private fun glideLoadImageIntoView(imageUrl: String?, intoImageView: ImageView) {
         Glide.with(intoImageView.context)
             .load(imageUrl)
             .into(intoImageView)
