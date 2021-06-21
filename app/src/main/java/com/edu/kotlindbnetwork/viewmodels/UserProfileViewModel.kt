@@ -24,10 +24,10 @@ class UserProfileViewModel(
             }
         }
     }
-    fun deleteUser(userId: String){
-        viewModelScope.launch(Dispatchers.IO) {
-            userRepo.clearUserById(userId)
-        }
-    }
+    // fun deleteUser(userId: String){
+    //     viewModelScope.launch(Dispatchers.IO) {
+    //         userRepo.clearUserById(userId)
+    //     }
+    // }
 
 }
