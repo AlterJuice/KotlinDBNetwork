@@ -1,8 +1,8 @@
 package com.edu.kotlindbnetwork.di
 
+import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.data.db.Database
 import com.edu.kotlindbnetwork.data.network.APIService
-import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.di.modules.NetworkModule
 import com.edu.kotlindbnetwork.di.modules.RepoModule
 import com.edu.kotlindbnetwork.di.modules.ViewModelModule

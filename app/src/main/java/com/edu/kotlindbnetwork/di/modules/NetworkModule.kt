@@ -11,7 +11,6 @@ import javax.inject.Named
 @Module
 class NetworkModule {
 
-
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
@@ -24,5 +23,4 @@ class NetworkModule {
     fun provideApiService(): APIService {
         return provideRetrofit().create(APIService::class.java)
     }
-
 }

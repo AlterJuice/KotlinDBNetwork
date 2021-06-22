@@ -36,56 +36,56 @@
     <TextView
         android:layout_marginTop="20dp"
         android:id="@+id/userIDTitle"
-        style="@style/UserProfileGridItem"
+        style="@style/UserProfileField"
         android:text="@string/user_id_field"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/userPhoto" />
 
     <TextView
         android:id="@+id/userID"
-        style="@style/UserProfileGridItem"
+        style="@style/UserProfileField"
         app:layout_constraintStart_toEndOf="@id/userIDTitle"
         app:layout_constraintTop_toTopOf="@id/userIDTitle"
         tools:text="$UserUUID" />
 
     <TextView
         android:id="@+id/userNameTitle"
-        style="@style/UserProfileGridItem"
+        style="@style/UserProfileField"
         android:text="@string/user_name_field"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/userIDTitle" />
 
     <TextView
         android:id="@+id/userName"
-        style="@style/UserProfileGridItem"
+        style="@style/UserProfileField"
         app:layout_constraintStart_toEndOf="@id/userNameTitle"
         app:layout_constraintTop_toTopOf="@id/userNameTitle"
         tools:text="$UserName" />
 
     <TextView
         android:id="@+id/userEmailTitle"
-        style="@style/UserProfileGridItem"
+        style="@style/UserProfileField"
         android:text="@string/user_email_field"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/userNameTitle" />
 
     <TextView
         android:id="@+id/userEmail"
-        style="@style/UserProfileGridItem"
+        style="@style/UserProfileField"
         app:layout_constraintStart_toEndOf="@id/userEmailTitle"
         app:layout_constraintTop_toTopOf="@id/userEmailTitle"
         tools:text="$UserEmail" />
 
     <TextView
         android:id="@+id/userPhoneTitle"
-        style="@style/UserProfileGridItem"
+        style="@style/UserProfileField"
         android:text="@string/user_phone_field"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/userEmailTitle" />
 
     <TextView
         android:id="@+id/userPhone"
-        style="@style/UserProfileGridItem"
+        style="@style/UserProfileField"
         app:layout_constraintStart_toEndOf="@id/userPhoneTitle"
         app:layout_constraintTop_toTopOf="@id/userPhoneTitle"
         tools:text="$UserPhone" />

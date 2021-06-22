@@ -25,10 +25,5 @@ class UserProfileViewModel @Inject constructor(
             }
         }
     }
-    fun deleteUser(userId: String){
-        viewModelScope.launch(Dispatchers.IO) {
-            userRepo.clearUserById(userId)
-        }
-    }
 
 }

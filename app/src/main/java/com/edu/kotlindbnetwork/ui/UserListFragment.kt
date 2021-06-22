@@ -21,8 +21,7 @@ class UserListFragment : Fragment() {
 
     private lateinit var binding: FragmentUserListBinding
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val model by lazy {
         ViewModelProvider(this, viewModelFactory).get(UserListViewModel::class.java)

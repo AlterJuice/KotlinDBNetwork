@@ -1,6 +1,5 @@
 package com.edu.kotlindbnetwork.repo
 
-import android.util.Log
 import com.edu.kotlindbnetwork.data.db.user.User
 
 class UserRepoDecorator(
@@ -26,7 +25,6 @@ class UserRepoDecorator(
             saveUsers(users)
             users
         } catch (e: Exception) {
-            e.printStackTrace()
             databaseRepo.getUsers(offset, count)
         }
     }
@@ -47,11 +45,4 @@ class UserRepoDecorator(
         databaseRepo.clearUsers()
     }
 
-    override suspend fun clearUserById(userId: String) {
-        try {
-            networkRepo.clearUserById(userId)
-        } catch (e: Exception) {
-        }
-        databaseRepo.clearUserById(userId)
-    }
 }

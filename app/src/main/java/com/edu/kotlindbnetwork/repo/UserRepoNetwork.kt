@@ -8,12 +8,8 @@ import com.edu.kotlindbnetwork.data.network.response.toModel
 class UserRepoNetwork(
     private val api: APIService
 ) : UserRepo {
-    private fun getOffsetForApi(offset: Int): String {
-        return "offset$offset"
-    }
-
     override suspend fun getUsers(offset: Int, count: Int): List<User> {
-        return api.getUsers(Consts.INCLUDED_PARAMS, count, getOffsetForApi(offset)).results.map {
+        return api.getUsers(Consts.INCLUDED_PARAMS, count, "offset$offset").results.map {
             it.toModel()
         }
     }
@@ -28,10 +24,6 @@ class UserRepoNetwork(
 
     override suspend fun clearUsers() {
         throw UnsupportedOperationException("Cannot clear users from server")
-    }
-
-    override suspend fun clearUserById(userId: String) {
-        throw UnsupportedOperationException("Cannot clear user from server")
     }
 
 }

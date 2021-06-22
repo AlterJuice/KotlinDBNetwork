@@ -15,6 +15,5 @@ interface UserRepo {
     suspend fun saveUsers(users: List<User>)
     suspend fun getUserById(userId: String): User
     suspend fun clearUsers()
-    suspend fun clearUserById(userId: String)
 
 }

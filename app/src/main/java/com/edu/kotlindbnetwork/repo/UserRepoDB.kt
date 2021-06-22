@@ -23,7 +23,4 @@ class UserRepoDB(
         database.userDao()?.clearUsers()
     }
 
-    override suspend fun clearUserById(userId: String) {
-        database.userDao()?.clearUserById(userId)
-    }
 }

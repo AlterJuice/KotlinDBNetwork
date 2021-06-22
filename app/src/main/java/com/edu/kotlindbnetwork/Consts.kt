@@ -22,7 +22,7 @@ object Consts {
 
     const val API_URL_TAG = "api"
     const val API_KEY_RESULTS = "results"
-    const val API_KEY_USER_ID = "id"
+    // const val API_KEY_USER_ID = "id"
     const val API_KEY_USER_LOGIN = "login"
     const val API_KEY_USER_LOGIN_UUID = "uuid"
 
@@ -34,8 +34,8 @@ object Consts {
     const val API_KEY_USER_NAME_LAST = "last"
     const val API_KEY_USER_PICTURE = "picture"
     const val API_KEY_USER_PICTURE_LARGE = "large"
-    const val API_KEY_USER_PICTURE_MEDIUM = "medium"
-    const val API_KEY_USER_PICTURE_THUMBNAIL = "thumbnail"
+    // const val API_KEY_USER_PICTURE_MEDIUM = "medium"
+    // const val API_KEY_USER_PICTURE_THUMBNAIL = "thumbnail"
     const val API_KEY_COUNT_USERS = "results"
     const val API_KEY_SEED_OFFSET = "seed"
     const val API_KEY_INCLUDE = "inc"
