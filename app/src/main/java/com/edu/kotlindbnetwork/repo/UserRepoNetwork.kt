@@ -1,14 +1,14 @@
 package com.edu.kotlindbnetwork.repo
 
-import com.edu.kotlindbnetwork.data.network.APIService
 import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.data.db.user.User
+import com.edu.kotlindbnetwork.data.network.APIService
 import com.edu.kotlindbnetwork.data.network.response.toModel
 
 class UserRepoNetwork(
     private val api: APIService
 ) : UserRepo {
-    private fun getOffsetForApi(offset: Int) : String{
+    private fun getOffsetForApi(offset: Int): String {
         return "offset$offset"
     }
 

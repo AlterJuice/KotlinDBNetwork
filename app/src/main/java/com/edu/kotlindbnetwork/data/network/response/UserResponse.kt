@@ -37,7 +37,6 @@ data class UserResponse(
         override fun toString(): String {
             return "User<id=${login.uuid}, name=$name>"
         }
-
     }
 }
 
