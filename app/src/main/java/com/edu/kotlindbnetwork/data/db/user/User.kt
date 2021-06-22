@@ -8,11 +8,11 @@ import com.edu.kotlindbnetwork.Consts
 @Entity(tableName = Consts.TABLE_NAME_USERS)
 class User(
     @PrimaryKey val uid: String,
-    @ColumnInfo(name = "first_name") val firstName: String?,
-    @ColumnInfo(name = "last_name") val lastName: String?,
-    @ColumnInfo(name = "phone_number") val phoneNumber: String?,
-    @ColumnInfo(name = "email") val email: String?,
-    @ColumnInfo(name = "photo_url") val photoUrl: String?
+    @ColumnInfo(name = Consts.TABLE_USERS_FIELD_FIRST_NAME) val firstName: String?,
+    @ColumnInfo(name = Consts.TABLE_USERS_FIELD_LAST_NAME) val lastName: String?,
+    @ColumnInfo(name = Consts.TABLE_USERS_FIELD_PHONE_NUMBER) val phoneNumber: String?,
+    @ColumnInfo(name = Consts.TABLE_USERS_FIELD_EMAIL) val email: String?,
+    @ColumnInfo(name = Consts.TABLE_USERS_FIELD_PHOTO_URL) val photoUrl: String?
 ) {
     override fun toString(): String {
         return "<DBUser: $firstName $lastName ($phoneNumber, $email)>"
