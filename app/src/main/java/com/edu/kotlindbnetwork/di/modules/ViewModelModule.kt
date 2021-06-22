@@ -1,4 +1,4 @@
-package com.edu.kotlindbnetwork.modules
+package com.edu.kotlindbnetwork.di.modules
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -23,10 +23,6 @@ abstract class ViewModelModule {
 
     @Binds
     abstract fun bindFactory(factory: ViewModelFactory): ViewModelProvider.Factory
-    // Examples
-    // https://coderoad.ru/44712248/%D0%98%D0%BD%D1%8A%D0%B5%D0%BA%D1%86%D0%B8%D1%8F-ViewModel-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-Dagger-2-Kotlin-ViewModel
-    // https://github.com/bubelov/coin-map-android/commit/56629d75569bc2937889b71299c21b9579ad96c4
-
 
 }
 

@@ -1,10 +1,11 @@
-package com.edu.kotlindbnetwork
+package com.edu.kotlindbnetwork.di
 
 import com.edu.kotlindbnetwork.data.db.Database
 import com.edu.kotlindbnetwork.data.network.APIService
-import com.edu.kotlindbnetwork.modules.NetworkModule
-import com.edu.kotlindbnetwork.modules.RepoModule
-import com.edu.kotlindbnetwork.modules.ViewModelModule
+import com.edu.kotlindbnetwork.Consts
+import com.edu.kotlindbnetwork.di.modules.NetworkModule
+import com.edu.kotlindbnetwork.di.modules.RepoModule
+import com.edu.kotlindbnetwork.di.modules.ViewModelModule
 import com.edu.kotlindbnetwork.repo.UserRepo
 import com.edu.kotlindbnetwork.ui.MainActivity
 import com.edu.kotlindbnetwork.ui.UserListFragment

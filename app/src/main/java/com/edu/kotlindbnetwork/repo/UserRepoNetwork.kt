@@ -8,9 +8,12 @@ import com.edu.kotlindbnetwork.data.network.response.toModel
 class UserRepoNetwork(
     private val api: APIService
 ) : UserRepo {
+    private fun getOffsetForApi(offset: Int) : String{
+        return "offset$offset"
+    }
 
     override suspend fun getUsers(offset: Int, count: Int): List<User> {
-        return api.getUsers(Consts.INCLUDED_PARAMS, count).results.map {
+        return api.getUsers(Consts.INCLUDED_PARAMS, count, getOffsetForApi(offset)).results.map {
             it.toModel()
         }
     }
@@ -21,8 +24,6 @@ class UserRepoNetwork(
 
     override suspend fun getUserById(userId: String): User {
         throw java.lang.UnsupportedOperationException("Server doesn't allow to get users by id")
-        // You have to use seed to get the same objects each request
-        // api.getUserById(userId)
     }
 
     override suspend fun clearUsers() {

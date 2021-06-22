@@ -18,16 +18,8 @@ class UserRepoDecorator(
         }
     }
 
-//    override suspend fun getUsers(): List<User> {
-//        return getUsers(0)
-//    }
-//
-//    override suspend fun getUsers(offset: Int): List<User> {
-//        return getUsers(offset, Consts.COUNT_USERS_PER_REQUEST)
-//    }
 
     override suspend fun getUsers(offset: Int, count: Int): List<User> {
-        Log.d("Decorator: ", "Count: $count, offset: $offset")
         return try {
             val users = networkRepo.getUsers(offset, count)
             clearDataIfFirstRequest()

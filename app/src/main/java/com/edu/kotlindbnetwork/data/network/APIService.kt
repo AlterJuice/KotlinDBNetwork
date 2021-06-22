@@ -14,6 +14,13 @@ interface APIService {
     ): UserResponse
 
     @GET(Consts.API_URL_TAG)
+    suspend fun getUsers(
+        @Query(Consts.API_KEY_INCLUDE) includedParams: String,
+        @Query(Consts.API_KEY_COUNT_USERS) count: Int,
+        @Query(Consts.API_KEY_SEED_OFFSET) seedOffset: String
+    ): UserResponse
+
+    @GET(Consts.API_URL_TAG)
     suspend fun getUser(@Query(Consts.API_KEY_USER_ID) userId: String): UserResponse
 
     @GET(Consts.API_URL_TAG)

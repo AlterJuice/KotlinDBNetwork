@@ -1,4 +1,4 @@
-package com.edu.kotlindbnetwork.modules
+package com.edu.kotlindbnetwork.di.modules
 
 import android.content.Context
 import androidx.room.Room

@@ -1,8 +1,9 @@
 package com.edu.kotlindbnetwork
 
 import android.app.Application
-import com.edu.kotlindbnetwork.modules.NetworkModule
-import com.edu.kotlindbnetwork.modules.RepoModule
+import com.edu.kotlindbnetwork.di.AppComponent
+import com.edu.kotlindbnetwork.di.modules.NetworkModule
+import com.edu.kotlindbnetwork.di.modules.RepoModule
 
 class App : Application() {
 
@@ -10,7 +11,7 @@ class App : Application() {
     companion object {
         private lateinit var component: AppComponent
 
-        fun getComponent(): AppComponent{
+        fun getComponent(): AppComponent {
             return component
         }
     }

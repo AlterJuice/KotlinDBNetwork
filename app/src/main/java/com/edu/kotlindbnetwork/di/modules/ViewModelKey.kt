@@ -1,4 +1,4 @@
-package com.edu.kotlindbnetwork.modules
+package com.edu.kotlindbnetwork.di.modules
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey
