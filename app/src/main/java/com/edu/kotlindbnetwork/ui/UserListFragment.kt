@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.edu.kotlindbnetwork.*
-import com.edu.kotlindbnetwork.databinding.FragmentUserListBinding
+import com.edu.kotlindbnetwork.App
+import com.edu.kotlindbnetwork.Consts
+import com.edu.kotlindbnetwork.R
 import com.edu.kotlindbnetwork.data.db.user.User
-import com.edu.kotlindbnetwork.repo.UserRepo
+import com.edu.kotlindbnetwork.databinding.FragmentUserListBinding
 import com.edu.kotlindbnetwork.ui.adapters.UserAdapter
 import com.edu.kotlindbnetwork.viewmodels.UserListViewModel
 import javax.inject.Inject
@@ -22,15 +22,10 @@ class UserListFragment : Fragment() {
     private lateinit var binding: FragmentUserListBinding
 
     @Inject
-    lateinit var userRepo: UserRepo
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
-
-    private val model by lazy{
-        ViewModelProvider(this, object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return UserListViewModel(userRepo) as T
-            }
-        }).get(UserListViewModel::class.java)
+    private val model by lazy {
+        ViewModelProvider(this, viewModelFactory).get(UserListViewModel::class.java)
     }
 
     private val adapter by lazy {
@@ -39,7 +34,7 @@ class UserListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        App.getComponent().injectsUserListFragment(this)
+        App.getComponent().inject(this)
     }
 
     override fun onCreateView(
@@ -61,7 +56,7 @@ class UserListFragment : Fragment() {
         })
     }
 
-    private fun singleClick(user: User){
+    private fun singleClick(user: User) {
         requireActivity().supportFragmentManager
             .beginTransaction()
             .replace(

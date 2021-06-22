@@ -22,5 +22,4 @@ class App : Application() {
             .networkModule(NetworkModule())
             .build()
     }
-
 }

@@ -35,12 +35,13 @@ class UserAdapter(
         holder.bind(getItem(position), clickListener)
     }
 
-    inner class ViewHolder(private val binding: UserListItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(user: User, onItemClick: (User) -> Unit){
+    inner class ViewHolder(private val binding: UserListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(user: User, onItemClick: (User) -> Unit) {
             binding.root.setOnClickListener {
                 onItemClick(user)
             }
-            binding.root.onFocusChangeListener = object : View.OnFocusChangeListener{
+            binding.root.onFocusChangeListener = object : View.OnFocusChangeListener {
                 override fun onFocusChange(v: View?, hasFocus: Boolean) {
                     if (v == null) return
                     var scale = 1f
@@ -53,7 +54,7 @@ class UserAdapter(
     }
 
 
-    class UserDifferenceCallback : DiffUtil.ItemCallback<User>(){
+    class UserDifferenceCallback : DiffUtil.ItemCallback<User>() {
         override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
             return oldItem.firstName == newItem.firstName
                     && oldItem.lastName == newItem.lastName
@@ -67,7 +68,6 @@ class UserAdapter(
             return oldItem.uid == newItem.uid
         }
     }
-
 
 
 }

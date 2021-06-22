@@ -19,7 +19,8 @@ class NetworkModule {
             .baseUrl(Consts.BASE_API_URL).build()
     }
 
-    @Provides @Named(Consts.MODULE_TAG_API_SERVICE)
+    @Provides
+    @Named(Consts.MODULE_TAG_API_SERVICE)
     fun provideApiService(): APIService {
         return provideRetrofit().create(APIService::class.java)
     }

@@ -9,14 +9,6 @@ class UserRepoNetwork(
     private val api: APIService
 ) : UserRepo {
 
-//    override suspend fun getUsers(): List<User> {
-//        return getUsers(0)
-//    }
-//
-//    override suspend fun getUsers(offset: Int): List<User> {
-//        return getUsers(offset, Consts.COUNT_USERS_PER_REQUEST)
-//    }
-
     override suspend fun getUsers(offset: Int, count: Int): List<User> {
         return api.getUsers(Consts.INCLUDED_PARAMS, count).results.map {
             it.toModel()
@@ -29,7 +21,7 @@ class UserRepoNetwork(
 
     override suspend fun getUserById(userId: String): User {
         throw java.lang.UnsupportedOperationException("Server doesn't allow to get users by id")
-        // You have to use seed to get the same objects each time
+        // You have to use seed to get the same objects each request
         // api.getUserById(userId)
     }
 

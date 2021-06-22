@@ -1,10 +1,11 @@
 package com.edu.kotlindbnetwork
 
-object Consts{
+object Consts {
     // Consts file move to ...?
     // Replace ([A-Z]) to \_\L$1
 
     const val MODULE_TAG_API_SERVICE = "apiService"
+    // const val MODULE_TAG_USER_REPO = "apiService"
 
     const val FRAGMENT_USER_PROFILE_TAG = "_user_profile"
     const val FRAGMENT_USER_PROFILE_ARG_USER_ID = "user_id"
@@ -17,6 +18,7 @@ object Consts{
     const val API_KEY_USER_ID = "id"
     const val API_KEY_USER_LOGIN = "login"
     const val API_KEY_USER_LOGIN_UUID = "uuid"
+
     // const val API_KEY_USER_ID_NAME = "name"
     // const val API_KEY_USER_ID_VALUE = "value"
     const val API_KEY_USER_EMAIL = "email"

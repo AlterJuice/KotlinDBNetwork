@@ -9,8 +9,9 @@ import com.edu.kotlindbnetwork.repo.UserRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class UserProfileViewModel(
+class UserProfileViewModel @Inject constructor(
     private val userRepo: UserRepo
 ): ViewModel() {
     private val liveUser: MutableLiveData<User> = MutableLiveData()

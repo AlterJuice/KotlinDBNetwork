@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -18,9 +17,8 @@ import com.bumptech.glide.request.target.Target
 import com.edu.kotlindbnetwork.App
 import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.R
-import com.edu.kotlindbnetwork.databinding.FragmentUserProfileBinding
 import com.edu.kotlindbnetwork.data.db.user.User
-import com.edu.kotlindbnetwork.repo.UserRepo
+import com.edu.kotlindbnetwork.databinding.FragmentUserProfileBinding
 import com.edu.kotlindbnetwork.viewmodels.UserProfileViewModel
 import javax.inject.Inject
 
@@ -29,21 +27,15 @@ class UserProfileFragment : Fragment() {
     private lateinit var binding: FragmentUserProfileBinding
 
     @Inject
-    lateinit var userRepo: UserRepo
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val model by lazy{
-        ViewModelProvider(this, object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return UserProfileViewModel(userRepo) as T
-            }
-        }).get(UserProfileViewModel::class.java)
+    private val model by lazy {
+        ViewModelProvider(this, viewModelFactory).get(UserProfileViewModel::class.java)
     }
-
 
     private val userId by lazy {
         arguments?.getString(Consts.FRAGMENT_USER_PROFILE_ARG_USER_ID) ?: ""
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,18 +47,18 @@ class UserProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        App.getComponent().injectsUserProfileFragment(this)
+        App.getComponent().inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        model.user.observe(viewLifecycleOwner,{
+        model.user.observe(viewLifecycleOwner, {
             showUserContent(it)
         })
         model.getUser(userId)
     }
 
-    private fun showUserContent(user: User){
-        with(binding){
+    private fun showUserContent(user: User) {
+        with(binding) {
             val firstLastName = "${user.firstName} ${user.lastName}"
             userID.text = user.uid
             userName.text = firstLastName
@@ -80,27 +72,28 @@ class UserProfileFragment : Fragment() {
     private fun loadImageIntoView(imageUrl: String?, intoImageView: ImageView) {
         // Picasso.get().load(imageUrl).noFade().into(intoImageView)
         Glide.with(intoImageView.context).load(imageUrl)
-            .addListener(object : RequestListener<Drawable>{
-            override fun onResourceReady(
-                resource: Drawable?,
-                model: Any?,
-                target: Target<Drawable>?,
-                dataSource: DataSource?,
-                isFirstResource: Boolean
-            ): Boolean {
-                intoImageView.animation = AnimationUtils.loadAnimation(context, R.anim.scale_up_down)
-                return false
-            }
+            .addListener(object : RequestListener<Drawable> {
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    intoImageView.animation =
+                        AnimationUtils.loadAnimation(context, R.anim.scale_up_down)
+                    return false
+                }
 
-            override fun onLoadFailed(
-                e: GlideException?,
-                model: Any?,
-                target: Target<Drawable>?,
-                isFirstResource: Boolean
-            ): Boolean {
-                return false
-            }
-        })
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    return false
+                }
+            })
             .circleCrop().into(intoImageView)
         // intoImageView.animation = AnimationUtils.loadAnimation(context, R.anim.scale_up_down)
 

@@ -10,6 +10,7 @@ data class UserResponse(
     override fun toString(): String {
         return results.toString()
     }
+
     data class User(
 
         @SerializedName(Consts.API_KEY_USER_LOGIN) val login: Login,
@@ -19,17 +20,23 @@ data class UserResponse(
         @SerializedName(Consts.API_KEY_USER_PICTURE) val picture: Picture
     ) {
 
-        data class Name(@SerializedName(Consts.API_KEY_USER_NAME_TITLE) val title: String,
-                        @SerializedName(Consts.API_KEY_USER_NAME_FIRST) val first: String,
-                        @SerializedName(Consts.API_KEY_USER_NAME_LAST) val last: String)
+        data class Name(
+            @SerializedName(Consts.API_KEY_USER_NAME_TITLE) val title: String,
+            @SerializedName(Consts.API_KEY_USER_NAME_FIRST) val first: String,
+            @SerializedName(Consts.API_KEY_USER_NAME_LAST) val last: String
+        )
 
-        data class Picture(@SerializedName(Consts.API_KEY_USER_PICTURE_LARGE) val large: String,
-                           @SerializedName(Consts.API_KEY_USER_PICTURE_MEDIUM) val medium: String,
-                           @SerializedName(Consts.API_KEY_USER_PICTURE_THUMBNAIL) val thumbnail: String)
+        data class Picture(
+            @SerializedName(Consts.API_KEY_USER_PICTURE_LARGE) val large: String,
+            @SerializedName(Consts.API_KEY_USER_PICTURE_MEDIUM) val medium: String,
+            @SerializedName(Consts.API_KEY_USER_PICTURE_THUMBNAIL) val thumbnail: String
+        )
 
         data class Login(@SerializedName(Consts.API_KEY_USER_LOGIN_UUID) val uuid: String)
 
-        override fun toString(): String { return "User<id=${login.uuid}, name=$name>" }
+        override fun toString(): String {
+            return "User<id=${login.uuid}, name=$name>"
+        }
 
     }
 }
