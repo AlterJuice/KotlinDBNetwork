@@ -23,7 +23,7 @@ interface AppComponent {
 
     fun getUserRepo(): UserRepo
     fun getDatabase(): Database
-    @Named(Consts.MODULE_TAG_API_SERVICE) fun getApiService(): APIService
+    fun getApiService(): APIService
     fun getRetrofit(): Retrofit
 
 }

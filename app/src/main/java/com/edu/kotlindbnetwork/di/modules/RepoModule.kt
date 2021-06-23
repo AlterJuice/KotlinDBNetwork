@@ -22,8 +22,23 @@ class RepoModule(
     }
 
     @Provides
-    fun provideUserRepo(@Named(Consts.MODULE_TAG_API_SERVICE) apiService: APIService): UserRepo {
-        return UserRepoDecorator(UserRepoNetwork(apiService), UserRepoDB(provideDatabase()))
+    fun provideUserRepo(
+        @Named(Consts.MODULE_TAG_REPO_NETWORK) networkRepo: UserRepo,
+        @Named(Consts.MODULE_TAG_REPO_DATABASE) databaseRepo: UserRepo
+    ): UserRepo {
+        return UserRepoDecorator(networkRepo, databaseRepo)
+    }
+
+    @Provides
+    @Named(Consts.MODULE_TAG_REPO_NETWORK)
+    fun provideRepoNetwork(apiService: APIService): UserRepo {
+        return UserRepoNetwork(apiService)
+    }
+
+    @Provides
+    @Named(Consts.MODULE_TAG_REPO_DATABASE)
+    fun provideRepoDatabase(database: Database): UserRepo {
+        return UserRepoDB(database)
     }
 
     @Provides

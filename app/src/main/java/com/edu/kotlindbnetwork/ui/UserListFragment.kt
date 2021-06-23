@@ -28,7 +28,7 @@ class UserListFragment : Fragment() {
     }
 
     private val adapter by lazy {
-        UserAdapter({ singleClick(it) }, { model.getUsers() })
+        UserAdapter({ onUserItemClick(it) }, { model.getUsers() })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +47,6 @@ class UserListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.loadMoreButton.setOnClickListener { model.getUsers() }
         binding.userProfileList.adapter = adapter
         binding.userProfileList.layoutManager = LinearLayoutManager(context)
         model.users.observe(viewLifecycleOwner, {
@@ -55,7 +54,7 @@ class UserListFragment : Fragment() {
         })
     }
 
-    private fun singleClick(user: User) {
+    private fun onUserItemClick(user: User) {
         requireActivity().supportFragmentManager
             .beginTransaction()
             .replace(

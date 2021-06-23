@@ -44,5 +44,4 @@ class UserRepoDecorator(
     override suspend fun clearUsers() {
         databaseRepo.clearUsers()
     }
-
 }

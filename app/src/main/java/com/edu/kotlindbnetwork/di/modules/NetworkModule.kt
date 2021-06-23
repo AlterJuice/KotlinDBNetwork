@@ -19,7 +19,6 @@ class NetworkModule {
     }
 
     @Provides
-    @Named(Consts.MODULE_TAG_API_SERVICE)
     fun provideApiService(): APIService {
         return provideRetrofit().create(APIService::class.java)
     }

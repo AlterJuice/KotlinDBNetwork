@@ -19,7 +19,7 @@ class UserRepoNetwork(
     }
 
     override suspend fun getUserById(userId: String): User {
-        throw java.lang.UnsupportedOperationException("Server doesn't allow to get users by id")
+        throw UnsupportedOperationException("Server doesn't allow to get users by id")
     }
 
     override suspend fun clearUsers() {
