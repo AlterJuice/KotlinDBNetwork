@@ -4,12 +4,14 @@ import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.data.network.APIService
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Named
 
 @Module
-class NetworkModule {
+@InstallIn(SingletonComponent::class)
+object NetworkModule {
 
     @Provides
     fun provideRetrofit(): Retrofit {
@@ -19,7 +21,7 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideApiService(): APIService {
-        return provideRetrofit().create(APIService::class.java)
+    fun provideApiService(retrofit: Retrofit): APIService {
+        return retrofit.create(APIService::class.java)
     }
 }

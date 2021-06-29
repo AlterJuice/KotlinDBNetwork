@@ -6,28 +6,28 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.edu.kotlindbnetwork.App
 import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.data.db.user.User
 import com.edu.kotlindbnetwork.databinding.FragmentUserProfileBinding
 import com.edu.kotlindbnetwork.viewmodels.UserProfileViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class UserProfileFragment : Fragment() {
     private lateinit var binding: FragmentUserProfileBinding
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject lateinit var userProfileFactory: UserProfileViewModel.AssistedFactory
 
-    private val model by lazy {
-        ViewModelProvider(this, viewModelFactory).get(UserProfileViewModel::class.java)
+
+    private val model by viewModels<UserProfileViewModel> {
+        UserProfileViewModel.provideFactory(userProfileFactory,
+            arguments?.getString(Consts.FRAGMENT_USER_PROFILE_ARG_USER_ID) ?: ""
+        )
     }
 
-    private val userId by lazy {
-        arguments?.getString(Consts.FRAGMENT_USER_PROFILE_ARG_USER_ID) ?: ""
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,16 +37,9 @@ class UserProfileFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        App.getComponent().inject(this)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        model.user.observe(viewLifecycleOwner, {
-            showUserContent(it)
-        })
-        model.getUser(userId)
+        model.user.observe(viewLifecycleOwner, { showUserContent(it) })
     }
 
     private fun showUserContent(user: User) {

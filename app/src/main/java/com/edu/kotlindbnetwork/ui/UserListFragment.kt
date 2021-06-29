@@ -5,35 +5,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.edu.kotlindbnetwork.App
 import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.R
 import com.edu.kotlindbnetwork.data.db.user.User
 import com.edu.kotlindbnetwork.databinding.FragmentUserListBinding
 import com.edu.kotlindbnetwork.ui.adapters.UserAdapter
 import com.edu.kotlindbnetwork.viewmodels.UserListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class UserListFragment : Fragment() {
-
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var binding: FragmentUserListBinding
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val model by lazy {
-        ViewModelProvider(this, viewModelFactory).get(UserListViewModel::class.java)
+    private val model by viewModels<UserListViewModel> {
+        viewModelFactory
     }
 
     private val adapter by lazy {
         UserAdapter({ onUserItemClick(it) }, { model.getUsers() })
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        App.getComponent().inject(this)
     }
 
     override fun onCreateView(

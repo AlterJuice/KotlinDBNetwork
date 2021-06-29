@@ -11,16 +11,15 @@ import com.edu.kotlindbnetwork.repo.UserRepoDecorator
 import com.edu.kotlindbnetwork.repo.UserRepoNetwork
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Named
 
-@Module(includes = [NetworkModule::class])
-class RepoModule(
-    private val context: Context
-) {
-    private fun getContext(): Context {
-        return context
-    }
-
+@Module
+@InstallIn(SingletonComponent::class)
+object RepoModule
+ {
     @Provides
     fun provideUserRepo(
         @Named(Consts.MODULE_TAG_REPO_NETWORK) networkRepo: UserRepo,
@@ -42,9 +41,9 @@ class RepoModule(
     }
 
     @Provides
-    fun provideDatabase(): Database {
+    fun provideDatabase(@ApplicationContext context: Context): Database {
         return Room.databaseBuilder(
-            getContext(),
+            context,
             Database::class.java, Consts.DATABASE_FILENAME
         ).build()
     }
