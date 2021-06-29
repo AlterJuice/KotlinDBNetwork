@@ -1,7 +1,6 @@
 package com.edu.kotlindbnetwork
 
 object Consts {
-    // Replace ([A-Z]) to \_\L$1
 
     const val MODULE_TAG_REPO_NETWORK = "networkRepo"
     const val MODULE_TAG_REPO_DATABASE = "databaseRepo"
