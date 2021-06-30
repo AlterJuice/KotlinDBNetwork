@@ -4,7 +4,12 @@ object Consts {
 
     const val MODULE_TAG_REPO_NETWORK = "networkRepo"
     const val MODULE_TAG_REPO_DATABASE = "databaseRepo"
+    const val MODULE_TAG_REPO_BOTH = "mixRepo"
 
+    const val MODULE_VIEW_MODEL_USER_LIST = "UserListViewModel"
+    const val MODULE_VIEW_MODEL_USER_PROFILE = "UserProfileViewModel"
+
+    const val FRAGMENT_USER_LIST_TAG = "_user_list"
     const val FRAGMENT_USER_PROFILE_TAG = "_user_profile"
     const val FRAGMENT_USER_PROFILE_ARG_USER_ID = "user_id"
 

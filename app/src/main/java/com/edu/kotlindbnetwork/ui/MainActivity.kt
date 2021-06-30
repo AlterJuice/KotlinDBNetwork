@@ -3,21 +3,22 @@ package com.edu.kotlindbnetwork.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.R
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        replaceFragment(UserListFragment.newInstance())
+        replaceFragment(UserListFragment.newInstance(), Consts.FRAGMENT_USER_LIST_TAG)
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    fun replaceFragment(fragment: Fragment, tag: String){
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.mainFragmentContainer, fragment).commit()
+            .replace(R.id.mainFragmentContainer, fragment, tag)
+            .addToBackStack(tag)
+            .commit()
     }
 
     fun setBarSubtitle(text: String) {

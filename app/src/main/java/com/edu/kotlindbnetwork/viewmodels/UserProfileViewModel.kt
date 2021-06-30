@@ -1,19 +1,19 @@
 package com.edu.kotlindbnetwork.viewmodels
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.edu.kotlindbnetwork.data.db.user.User
 import com.edu.kotlindbnetwork.repo.UserRepo
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class UserProfileViewModel @AssistedInject constructor(
+class UserProfileViewModel (
     private val userRepo: UserRepo,
-    @Assisted private val userId: String
+    private val userId: String
 ): ViewModel() {
 
     private val liveUser: MutableLiveData<User> = MutableLiveData()
@@ -30,23 +30,5 @@ class UserProfileViewModel @AssistedInject constructor(
                 liveUser.value = user
             }
         }
-    }
-
-
-    companion object {
-        fun provideFactory(
-            factory: Factory,
-            userId: String
-        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return factory.create(userId) as T
-            }
-        }
-    }
-
-    @AssistedFactory
-    interface Factory {
-        fun create(userId: String): UserProfileViewModel
     }
 }

@@ -5,29 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edu.kotlindbnetwork.Consts
-import com.edu.kotlindbnetwork.R
 import com.edu.kotlindbnetwork.data.db.user.User
 import com.edu.kotlindbnetwork.databinding.FragmentUserListBinding
 import com.edu.kotlindbnetwork.ui.adapters.UserAdapter
 import com.edu.kotlindbnetwork.viewmodels.UserListViewModel
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.core.qualifier.named
 
-@AndroidEntryPoint
 class UserListFragment : Fragment() {
     private lateinit var binding: FragmentUserListBinding
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val model by viewModels<UserListViewModel> {
-        viewModelFactory
-    }
+    private val viewModel by sharedViewModel<UserListViewModel>(named(Consts.MODULE_VIEW_MODEL_USER_LIST))
 
     private val adapter by lazy {
-        UserAdapter({ onUserItemClick(it) }, { model.getUsers() })
+        UserAdapter({ onUserItemClick(it) }, { viewModel.getUsers() })
     }
 
     override fun onCreateView(
@@ -38,24 +30,36 @@ class UserListFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.userProfileList.adapter = adapter
-        binding.userProfileList.layoutManager = LinearLayoutManager(context)
-        model.users.observe(viewLifecycleOwner, {
+    private fun attachObservers(){
+        viewModel.users.observe(viewLifecycleOwner, {
             adapter.submitList(it)
         })
     }
+    private fun configureUIList(){
+        binding.userProfileList.adapter = adapter
+        binding.userProfileList.layoutManager = LinearLayoutManager(context)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        configureUIList()
+        attachObservers()
+    }
 
     private fun onUserItemClick(user: User) {
-        requireActivity().supportFragmentManager
-            .beginTransaction()
-            .replace(
-                R.id.mainFragmentContainer, UserProfileFragment.newInstance(user.uid),
-                Consts.FRAGMENT_USER_PROFILE_TAG
-            )
-            .addToBackStack(Consts.FRAGMENT_USER_PROFILE_TAG)
-            .commit()
+        loadUserProfileFragment(user)
+    }
+
+    private fun loadUserProfileFragment(user: User){
+        with(requireActivity()){
+            val fragment = UserProfileFragment.newInstance(user.uid)
+            if (this is MainActivity) {
+                replaceFragment(fragment, Consts.FRAGMENT_USER_PROFILE_TAG)
+            }
+//            }else{
+//                throw UnsupportedOperationException("Supports MainActivity, got ${this.javaClass}")
+//            }
+        }
     }
 
     companion object {

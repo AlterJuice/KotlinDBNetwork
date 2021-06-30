@@ -6,25 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.edu.kotlindbnetwork.Consts
 import com.edu.kotlindbnetwork.data.db.user.User
 import com.edu.kotlindbnetwork.databinding.FragmentUserProfileBinding
 import com.edu.kotlindbnetwork.viewmodels.UserProfileViewModel
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
+import org.koin.core.qualifier.named
 
-@AndroidEntryPoint
 class UserProfileFragment : Fragment() {
     private lateinit var binding: FragmentUserProfileBinding
-    @Inject lateinit var userProfileFactory: UserProfileViewModel.Factory
-    private val model by viewModels<UserProfileViewModel> {
-        UserProfileViewModel.provideFactory(userProfileFactory,
-            arguments?.getString(Consts.FRAGMENT_USER_PROFILE_ARG_USER_ID) ?: ""
-        )
+    private val modelX by viewModel<UserProfileViewModel>(named(Consts.MODULE_VIEW_MODEL_USER_PROFILE)){
+        parametersOf(arguments?.getString(Consts.FRAGMENT_USER_PROFILE_ARG_USER_ID) ?: "")
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,11 +31,12 @@ class UserProfileFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         attachObservers()
     }
 
     private fun attachObservers(){
-        model.user.observe(viewLifecycleOwner, { showUserContent(it) })
+        modelX.user.observe(viewLifecycleOwner, { showUserContent(it) })
     }
 
     private fun showUserContent(user: User) {
