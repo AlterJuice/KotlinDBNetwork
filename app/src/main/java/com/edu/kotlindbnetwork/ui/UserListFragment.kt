@@ -19,8 +19,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class UserListFragment : Fragment() {
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var binding: FragmentUserListBinding
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val model by viewModels<UserListViewModel> {
         viewModelFactory
@@ -37,7 +37,6 @@ class UserListFragment : Fragment() {
         binding = FragmentUserListBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -57,6 +57,4 @@ class UserAdapter(
             return oldItem.uid == newItem.uid
         }
     }
-
-
 }

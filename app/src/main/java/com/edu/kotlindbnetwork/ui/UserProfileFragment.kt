@@ -18,10 +18,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class UserProfileFragment : Fragment() {
     private lateinit var binding: FragmentUserProfileBinding
-
-    @Inject lateinit var userProfileFactory: UserProfileViewModel.AssistedFactory
-
-
+    @Inject lateinit var userProfileFactory: UserProfileViewModel.Factory
     private val model by viewModels<UserProfileViewModel> {
         UserProfileViewModel.provideFactory(userProfileFactory,
             arguments?.getString(Consts.FRAGMENT_USER_PROFILE_ARG_USER_ID) ?: ""
@@ -39,6 +36,10 @@ class UserProfileFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        attachObservers()
+    }
+
+    private fun attachObservers(){
         model.user.observe(viewLifecycleOwner, { showUserContent(it) })
     }
 

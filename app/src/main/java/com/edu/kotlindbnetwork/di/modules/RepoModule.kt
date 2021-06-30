@@ -18,8 +18,7 @@ import javax.inject.Named
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepoModule
- {
+object RepoModule {
     @Provides
     fun provideUserRepo(
         @Named(Consts.MODULE_TAG_REPO_NETWORK) networkRepo: UserRepo,
