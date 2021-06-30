@@ -22,35 +22,30 @@ object Modules {
         single(named(Consts.MODULE_TAG_REPO_BOTH)) {
             RepoModule.provideUserRepo(
                 get(named(Consts.MODULE_TAG_REPO_NETWORK)),
-                get(named(Consts.MODULE_TAG_REPO_DATABASE)))
+                get(named(Consts.MODULE_TAG_REPO_DATABASE))
+            )
         }
     }
 
     private val viewModelModule = module {
-        // scopes ?
-        // scope<UserListFragment> {
-        //     scoped {
-        //         viewModel<UserListViewModel>(named(Consts.MODULE_VIEW_MODEL_USER_LIST)) {
-        //             UserListViewModel(
-        //                 get()
-        //             )
-        //         }
-        //     }
-        // }
-        // scope<UserProfileFragment> {
-        //     scoped {
-        //         viewModel<UserProfileViewModel>(named(Consts.MODULE_VIEW_MODEL_USER_PROFILE)) { (userId: String) ->
-        //             UserProfileViewModel(get(), userId)
-        //         }
-        //     }
-        // }
+        /*A scope is a context with a fixed duration of time, in which an object exists.
+         When the scope ends, any objects bound under that scope cannot be injected again.
+         To better have an image of that, think that a scope is like a box: a space where
+         you put things and throw it when you don’t need it anymore.
+         How do we use the new Scope API?
+         https://medium.com/koin-developers/ready-for-koin-2-0-2722ab59cac3
+         https://medium.com/mobile-app-development-publication/kotlin-koin-scope-illustrated-3bfa6c7ae98
+         */
 
         viewModel(named(Consts.MODULE_VIEW_MODEL_USER_LIST)) {
             UserListViewModel(get(named(Consts.MODULE_TAG_REPO_BOTH)))
         }
 
         viewModel(named(Consts.MODULE_VIEW_MODEL_USER_PROFILE)) { (userId: String) ->
-            UserProfileViewModel(userRepo=get(named(Consts.MODULE_TAG_REPO_BOTH)), userId=userId)
+            UserProfileViewModel(
+                userRepo = get(named(Consts.MODULE_TAG_REPO_BOTH)),
+                userId = userId
+            )
         }
     }
 
