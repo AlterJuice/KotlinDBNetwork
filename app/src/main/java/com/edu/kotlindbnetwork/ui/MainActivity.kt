@@ -13,11 +13,14 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(UserListFragment.newInstance(), Consts.FRAGMENT_USER_LIST_TAG)
     }
 
-    fun replaceFragment(fragment: Fragment, tag: String){
+    fun replaceFragment(fragment: Fragment, tag: String = "", addToBackStack: Boolean = false){
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.mainFragmentContainer, fragment, tag)
-            .addToBackStack(tag)
+            .apply {
+                if (addToBackStack)
+                    addToBackStack(tag)
+            }
             .commit()
     }
 

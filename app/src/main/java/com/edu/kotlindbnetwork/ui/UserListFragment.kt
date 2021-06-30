@@ -54,11 +54,10 @@ class UserListFragment : Fragment() {
         with(requireActivity()){
             val fragment = UserProfileFragment.newInstance(user.uid)
             if (this is MainActivity) {
-                replaceFragment(fragment, Consts.FRAGMENT_USER_PROFILE_TAG)
+                replaceFragment(fragment, Consts.FRAGMENT_USER_PROFILE_TAG, true)
+            }else{
+                throw UnsupportedOperationException("Supports MainActivity, got ${this.javaClass}")
             }
-//            }else{
-//                throw UnsupportedOperationException("Supports MainActivity, got ${this.javaClass}")
-//            }
         }
     }
 
